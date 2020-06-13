@@ -48,7 +48,7 @@ public class WsServer extends WebSocketServer {
             public void run() {
                 broadcast(dtf.format(now).toString());
             }
-        }, 1000,2000);
+        }, 1000,1000);
         System.out.println(conn + ": " + message);
     }
 

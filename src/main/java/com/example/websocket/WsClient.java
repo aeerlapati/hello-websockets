@@ -21,6 +21,8 @@ public class WsClient{
             }
             
             private static void run(String url) throws URISyntaxException, InterruptedException {
+               
+                Thread.currentThread().setName("First Thread");
 
                 WebSocketClient client = new WebSocketClient(new URI(url), new Draft_6455()) {
                     @Override
@@ -31,7 +33,7 @@ public class WsClient{
                     @Override
                     public void onMessage(String message) {
                         System.out.println("onMessage: " + message);
-                        this.send("received");
+                        this.send("received from:" + Thread.currentThread());
                     }
         
                     @Override
