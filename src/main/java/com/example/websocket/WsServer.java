@@ -15,7 +15,7 @@ import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 
 public class WsServer extends WebSocketServer {
-    
+
     private WsServer(int port) {
         super(new InetSocketAddress(port));
     }
@@ -35,16 +35,20 @@ public class WsServer extends WebSocketServer {
 
     @Override
     public void onMessage(WebSocket conn, String message) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-        LocalDateTime now = LocalDateTime.now();  
-        
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        try {
+            Thread.sleep(1000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Timer timer = new Timer();
         timer.schedule(new TimerTask(){
             @Override
             public void run() {
                 broadcast(dtf.format(now).toString());
             }
-        }, 0,2000);
+        }, 1000,2000);
         System.out.println(conn + ": " + message);
     }
 

@@ -48,7 +48,7 @@ public class WsClient{
                 client.connect();
         
                 System.out.println("Will close in 1 seconds");
-                Thread.sleep(1000L);
+                Thread.sleep(10000L);
                 client.close();
 
 }
